@@ -1,0 +1,11 @@
+{%extends 'base.html' %}
+
+{% block content %}
+    <h1>Ласкаво просимо на наш сайт!</h1>
+    <p>Це домашня сторінка нашого сайту бронювання.</p>
+    <h2>Доступні апартаменти:</h2>
+    <ul>
+        {% for appart in appartments %}
+            <li>{{ appart.title }} - {{ appart.description }}</li>
+        {% endfor %}
+{% endblock %}
