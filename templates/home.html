@@ -1,11 +1,66 @@
 {%extends 'base.html' %}
 
-{% block content %}
-    <h1>Ласкаво просимо на наш сайт!</h1>
-    <p>Це домашня сторінка нашого сайту бронювання.</p>
-    <h2>Доступні апартаменти:</h2>
-    <ul>
-        {% for appart in appartments %}
-            <li>{{ appart.title }} - {{ appart.description }}</li>
-        {% endfor %}
+{% block content %} 
+
+{% for appartment in appartments %}
+
+<div class="card mb-4 shadow-sm">
+
+    <div class="row g-0">
+
+        <div class="col-md-4">
+
+            {% if appartment.image %}
+            <img src="{{ appartment.image.url }}"
+                 class="img-fluid rounded-start h-100"
+                 alt="{{ appartment.title }}"
+                 style="object-fit: cover;">
+            {% endif %}
+
+        </div>
+
+        <div class="col-md-8">
+
+            <div class="card-body">
+
+                <h4 class="card-title">
+                    {{ appartment.title }}
+                </h4>
+
+                <p class="text-muted">
+                     {{ appartment.adress }}
+                </p>
+
+                <p class="card-text">
+                    {{ appartment.description|truncatewords:25 }}
+                </p>
+
+                <p class="card-text">
+                    <strong>Тип:</strong>
+                    {{ appartment.get_type_room_display }}
+                </p>
+
+                <p class="card-text">
+                    <strong>Місткість:</strong>
+                    {{ appartment.capasity }} осіб
+                </p>
+
+                <h5 class="text-success">
+                    ₴{{ appartment.price_per_day }}/доба
+                </h5>
+
+                <a href="#" class="btn btn-primary">
+                    Забронювати
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endfor %}
+    
 {% endblock %}
