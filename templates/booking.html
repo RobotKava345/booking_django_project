@@ -1,0 +1,156 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <div class="row">
+
+        <div class="col-lg-8">
+
+            <div class="card shadow border-0">
+
+                <div class="card-body p-4">
+
+                    <h2 class="mb-4">
+                        Бронювання апартаментів
+                    </h2>
+
+                    <form method="POST">
+
+                        {% csrf_token %}
+
+                        <div class="row">
+
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">
+                                    Ім'я
+                                </label>
+
+                                <input type="text"
+                                       name="name"
+                                       class="form-control"
+                                       required>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">
+                                    Прізвище
+                                </label>
+
+                                <input type="text"
+                                       name="surname"
+                                       class="form-control"
+                                       required>
+                            </div>
+
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">
+                                Email
+                            </label>
+
+                            <input type="email"
+                                   name="email"
+                                   class="form-control"
+                                   required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">
+                                Номер телефону
+                            </label>
+
+                            <input type="text"
+                                   name="phone_number"
+                                   class="form-control"
+                                   required>
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">
+                                    Дата заселення
+                                </label>
+
+                                <input type="datetime-local"
+                                       name="check_in_date"
+                                       class="form-control"
+                                       required>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">
+                                    Дата виселення
+                                </label>
+
+                                <input type="datetime-local"
+                                       name="check_out_date"
+                                       class="form-control"
+                                       required>
+                            </div>
+
+                        </div>
+
+                        <button type="submit"
+                                class="btn btn-primary btn-lg">
+                            Підтвердити бронювання
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-4">
+
+            <div class="card shadow sticky-top">
+
+                {% if appartment.image %}
+                <img src="{{ appartment.image.url }}"
+                     class="card-img-top"
+                     style="height:220px; object-fit:cover;">
+                {% endif %}
+
+                <div class="card-body">
+
+                    <h4>
+                        {{ appartment.title }}
+                    </h4>
+
+                    <p class="text-muted">
+                        {{ appartment.adress }}
+                    </p>
+
+                    <hr>
+
+                    <p>
+                        <strong>Тип:</strong>
+                        {{ appartment.get_type_room_display }}
+                    </p>
+
+                    <p>
+                        <strong>Місткість:</strong>
+                        {{ appartment.capasity }} осіб
+                    </p>
+
+                    <h3 class="text-success">
+                        ₴{{ appartment.price_per_day }}/доба
+                    </h3>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

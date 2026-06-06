@@ -1,12 +1,95 @@
-{%extends 'base.html' %}
-
-
-
-
-
-
-
-
-
+{% extends 'base.html' %}
 
 {% block content %}
+
+<div class="container py-5">
+
+    <div class="row">
+
+        <div class="col-lg-8">
+
+            {% if appartment.image %}
+            <img src="{{ appartment.image.url }}"
+                 class="img-fluid rounded shadow-sm mb-4"
+                 alt="{{ appartment.title }}"
+                 style="width:100%; height:500px; object-fit:cover;">
+            {% endif %}
+
+            <h1 class="fw-bold mb-3">
+                {{ appartment.title }}
+            </h1>
+
+            <p class="text-muted fs-5 mb-4">
+                 {{ appartment.adress }}
+            </p>
+
+            <div class="card shadow-sm border-0 mb-4">
+
+                <div class="card-body">
+
+                    <h4 class="mb-3">
+                        Опис апартаментів
+                    </h4>
+
+                    <p class="fs-5 mb-0">
+                        {{ appartment.description }}
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-4">
+
+            <div class="card shadow sticky-top"
+                 style="top:100px;">
+
+                <div class="card-body">
+
+                    <h3 class="text-success fw-bold mb-4">
+                        ₴{{ appartment.price_per_day }}/доба
+                    </h3>
+
+                    <hr>
+
+                    <div class="mb-3">
+                        <strong>Тип номеру</strong>
+                        <p class="mb-0">
+                            {{ appartment.get_type_room_display }}
+                        </p>
+                    </div>
+
+                    <div class="mb-3">
+                        <strong>Місткість</strong>
+                        <p class="mb-0">
+                            {{ appartment.capasity }} осіб
+                        </p>
+                    </div>
+
+                    <div class="d-grid gap-2 mt-4">
+
+                        <a href="{% url 'booking_create' appartment.id %}"
+                           class="btn btn-primary btn-lg">
+                            Забронювати
+                        </a>
+
+                        <a href="{% url 'home' %}"
+                           class="btn btn-outline-secondary">
+                            Назад до каталогу
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

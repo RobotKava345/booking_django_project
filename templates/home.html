@@ -1,57 +1,74 @@
-{%extends 'base.html' %}
+{% extends 'base.html' %}
 
-{% block content %} 
+{% block content %}
 
-{% for appartment in appartments %}
+<div class="container mt-4">
 
-<div class="card mb-4 shadow-sm">
+    <h1 class="text-center mb-5">
+        Наші апартаменти
+    </h1>
 
-    <div class="row g-0">
+    {% for appartment in appartments %}
 
-        <div class="col-md-4">
+    <div class="card mb-4 shadow-sm border-0">
 
-            {% if appartment.image %}
-            <img src="{{ appartment.image.url }}"
-                 class="img-fluid rounded-start h-100"
-                 alt="{{ appartment.title }}"
-                 style="object-fit: cover;">
-            {% endif %}
+        <div class="row g-0">
 
-        </div>
+            <div class="col-md-4">
 
-        <div class="col-md-8">
+                {% if appartment.image %}
+                <img src="{{ appartment.image.url }}"
+                     class="img-fluid rounded-start w-100"
+                     alt="{{ appartment.title }}"
+                     style="height: 280px; object-fit: cover;">
+                {% endif %}
 
-            <div class="card-body">
+            </div>
 
-                <h4 class="card-title">
-                    {{ appartment.title }}
-                </h4>
+            <div class="col-md-8">
 
-                <p class="text-muted">
-                     {{ appartment.adress }}
-                </p>
+                <div class="card-body p-4">
 
-                <p class="card-text">
-                    {{ appartment.description|truncatewords:25 }}
-                </p>
+                    <h3 class="card-title mb-3">
+                        {{ appartment.title }}
+                    </h3>
 
-                <p class="card-text">
-                    <strong>Тип:</strong>
-                    {{ appartment.get_type_room_display }}
-                </p>
+                    <p class="text-muted mb-3">
+                        {{ appartment.adress }}
+                    </p>
 
-                <p class="card-text">
-                    <strong>Місткість:</strong>
-                    {{ appartment.capasity }} осіб
-                </p>
+                    <p class="card-text mb-4">
+                        {{ appartment.description|truncatewords:30 }}
+                    </p>
 
-                <h5 class="text-success">
-                    ₴{{ appartment.price_per_day }}/доба
-                </h5>
+                    <div class="row mb-4">
 
-                <a href="#" class="btn btn-primary">
-                    Забронювати
-                </a>
+                        <div class="col-md-6">
+                            <strong>Тип:</strong>
+                            {{ appartment.get_type_room_display }}
+                        </div>
+
+                        <div class="col-md-6">
+                            <strong>Місткість:</strong>
+                            {{ appartment.capasity }} осіб
+                        </div>
+
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-center">
+
+                        <h3 class="text-success mb-0">
+                            ₴{{ appartment.price_per_day }}/доба
+                        </h3>
+
+                        <a href="{% url 'appartment_page' appartment.id %}"
+                           class="btn btn-primary px-4">
+                            Детальніше
+                        </a>
+
+                    </div>
+
+                </div>
 
             </div>
 
@@ -59,8 +76,14 @@
 
     </div>
 
+    {% empty %}
+
+    <div class="alert alert-info">
+        Апартаменти поки що відсутні.
+    </div>
+
+    {% endfor %}
+
 </div>
 
-{% endfor %}
-    
 {% endblock %}

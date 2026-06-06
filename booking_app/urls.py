@@ -8,8 +8,13 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('', views.home, name='home'),
     path('appartment/<int:appartment_id>/', views.appartment_page, name='appartment_page'),
-    
+    path(
+    'booking/<int:appartment_id>/',
+    views.booking_create,
+    name='booking_create'
+),
 ]
+
 
 if settings.DEBUG:
     from django.conf import settings
