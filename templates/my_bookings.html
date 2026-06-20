@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <div class="card shadow border-0">
+
+        <div class="card-header bg-primary text-white">
+            <h2 class="mb-0">
+                Мої бронювання
+            </h2>
+        </div>
+
+        <div class="card-body">
+
+            <p class="lead">
+                Вітаємо, {{ user.username }}!
+            </p>
+
+            <p>
+                Тут будуть відображатися ваші бронювання.
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

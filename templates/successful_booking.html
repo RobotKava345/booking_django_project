@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-8">
+
+            <div class="card shadow border-0 text-center">
+
+                <div class="card-body p-5">
+
+                    <div class="mb-4">
+                        <i class="bi bi-check-circle-fill text-success"
+                           style="font-size: 5rem;"></i>
+                    </div>
+
+                    <h1 class="text-success mb-3">
+                        Апартаменти успішно заброньовано!
+                    </h1>
+
+                    <p class="lead text-muted">
+                        Дякуємо за ваше бронювання.
+                    </p>
+
+                    <p class="fs-5">
+                        Найближчим часом з вами зв'яжеться адміністратор
+                        для підтвердження деталей бронювання.
+                    </p>
+
+                    <hr class="my-4">
+
+                    <a href="{% url 'home' %}"
+                       class="btn btn-primary btn-lg">
+                        Повернутися до апартаментів
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

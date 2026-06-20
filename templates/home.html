@@ -8,6 +8,35 @@
         Наші апартаменти
     </h1>
 
+    </div>
+<form method="GET" class="card p-3 mb-4 shadow-sm">
+    <div class="row">
+
+        <div class="col-md-5">
+            <label class="form-label">Дата та час заїзду</label>
+            <input type="datetime-local"
+                   name="check_in"
+                   class="form-control"
+                   value="{{ request.GET.check_in }}">
+        </div>
+
+        <div class="col-md-5">
+            <label class="form-label">Дата та час виїзду</label>
+            <input type="datetime-local"
+                   name="check_out"
+                   class="form-control"
+                   value="{{ request.GET.check_out }}">
+        </div>
+
+        <div class="col-md-2 d-flex align-items-end">
+            <button type="submit" class="btn btn-primary w-100">
+                Пошук
+            </button>
+        </div>
+
+    </div>
+</form>
+
     {% for appartment in appartments %}
 
     <div class="card mb-4 shadow-sm border-0">
